@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+    }
+    
+    body {
+      width: 500px;
+      height: 600px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f7f7f7;
+      overflow: hidden;
+      display: flex;
+    }
+    
+    .container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      background: white;
+      position: relative;
+      overflow: hidden;
+      min-height: 0; /* Wichtig für nested flexbox */
+    }
+    
+    /* Größen-Auswahl */
+    .size-selector {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      display: flex;
+      gap: 3px;
+      z-index: 1001;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 3px;
+      border-radius: 4px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    
+    .size-button {
+      padding: 2px 6px;
+      font-size: 9px;
+      background: #f0f0f0;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.2s;
+      opacity: 0.8;
+    }
+    
+    .size-button:hover {
+      background: #e0e0e0;
+      border-color: #999;
+      opacity: 1;
+    }
+    
+    .size-button.active {
+      background: #0066cc;
+      color: white;
+      border-color: #0052a3;
+      opacity: 1;
+    }
+    
+    .header {
+      padding: 15px 20px;
+      background: #fff;
+      border-bottom: 1px solid #e0e0e0;
+      flex-shrink: 0;
+      overflow: hidden; /* Verhindere Überlauf */
+    }
+    
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    
+    h1 {
+      font-size: 18px;
+      margin: 0;
+      color: #333;
+    }
+    
+    .settings-button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 5px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    
+    .settings-button:hover {
+      background: #f0f0f0;
+    }
+    
+    .settings-button svg {
+      width: 20px;
+      height: 20px;
+      fill: #666;
+    }
+    
+    .settings-panel {
+      position: absolute;
+      top: 50px;
+      right: 20px;
+      width: 400px;
+      max-height: 500px;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      padding: 20px;
+      z-index: 1000;
+      display: none;
+      overflow-y: auto;
+    }
+    
+    .settings-panel.active {
+      display: block;
+    }
+    
+    .settings-section {
+      margin-bottom: 20px;
+    }
+    
+    .settings-section h3 {
+      font-size: 14px;
+      margin: 0 0 10px 0;
+      color: #333;
+    }
+    
+    .settings-section label {
+      display: block;
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 5px;
+    }
+    
+    .settings-section input,
+    .settings-section select,
+    .settings-section textarea {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 13px;
+      box-sizing: border-box;
+    }
+    
+    .settings-section select {
+      cursor: pointer;
+    }
+    
+    .checkbox-group {
+      margin: 10px 0;
+    }
+    
+    .checkbox-group label {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+      cursor: pointer;
+    }
+    
+    .checkbox-group input[type="checkbox"] {
+      width: auto;
+      margin-right: 8px;
+    }
+    
+    .settings-buttons {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      margin-top: 20px;
+    }
+    
+    .settings-buttons button {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+    
+    .save-settings {
+      background: #0066cc;
+      color: white;
+    }
+    
+    .save-settings:hover {
+      background: #0052a3;
+    }
+    
+    .cancel-settings {
+      background: #f0f0f0;
+      color: #333;
+    }
+    
+    .cancel-settings:hover {
+      background: #e0e0e0;
+    }
+    
+    .context-section {
+      margin-bottom: 10px;
+    }
+    
+    .context-toggle {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      padding: 8px;
+      background: #f0f0f0;
+      border-radius: 4px;
+      user-select: none;
+      transition: background 0.2s;
+    }
+    
+    .context-toggle:hover {
+      background: #e0e0e0;
+    }
+    
+    .context-toggle-icon {
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 5px solid #666;
+      margin-right: 8px;
+      transition: transform 0.2s;
+    }
+    
+    .context-toggle.active .context-toggle-icon {
+      transform: rotate(180deg);
+    }
+    
+    .context-toggle-label {
+      font-size: 13px;
+      color: #666;
+      flex: 1;
+    }
+    
+    .context-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+    
+    .context-content.active {
+      max-height: 150px;
+      margin-top: 10px;
+    }
+    
+    .context-content textarea {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      resize: vertical;
+      min-height: 80px;
+      max-height: 120px;
+      font-size: 13px;
+      box-sizing: border-box;
+    }
+    
+    .page-info {
+      font-size: 12px;
+      color: #666;
+      padding: 5px 10px;
+      background: #f8f9fa;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      word-break: break-all;
+    }
+    
+    .chat-container {
+      flex: 1;
+      overflow-y: auto;
+      padding: 15px;
+      background: #f8f9fa;
+      min-height: 0; /* Wichtig für Flexbox */
+    }
+    
+    .message {
+      margin-bottom: 15px;
+      animation: fadeIn 0.3s ease-in;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .message.user {
+      text-align: right;
+    }
+    
+    .message.assistant {
+      text-align: left;
+    }
+    
+    .message-content {
+      display: inline-block;
+      max-width: 80%;
+      padding: 10px 15px;
+      border-radius: 12px;
+      font-size: 14px;
+      line-height: 1.4;
+      word-wrap: break-word;
+    }
+    
+    .message.user .message-content {
+      background: #0066cc;
+      color: white;
+    }
+    
+    .message.assistant .message-content {
+      background: white;
+      color: #333;
+      border: 1px solid #e0e0e0;
+    }
+    
+    .input-section {
+      padding: 12px 15px;
+      background: white;
+      border-top: 1px solid #e0e0e0;
+      flex-shrink: 0;
+      min-height: auto; /* Flexibles Layout */
+    }
+    
+    .input-container {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .input-container textarea {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      resize: none;
+      font-size: 14px;
+      min-height: 50px;
+      max-height: 100px;
+      box-sizing: border-box;
+    }
+    
+    .send-button {
+      padding: 10px 20px;
+      background: #28a745;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      align-self: flex-end;
+    }
+    
+    .send-button:hover {
+      background: #218838;
+    }
+    
+    .send-button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+    
+    .error {
+      color: #dc3545;
+      padding: 10px;
+      background: #f8d7da;
+      border-radius: 4px;
+      margin: 10px 0;
+      font-size: 13px;
+    }
+    
+    .success {
+      color: #155724;
+      padding: 10px;
+      background: #d4edda;
+      border-radius: 4px;
+      margin: 10px 0;
+      font-size: 13px;
+    }
+    
+    .loading {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: #666;
+      border-radius: 50%;
+      animation: pulse 1.4s infinite ease-in-out;
+      margin: 0 2px;
+    }
+    
+    .loading:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+    
+    .loading:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+    
+    @keyframes pulse {
+      0%, 60%, 100% {
+        transform: scale(0.8);
+        opacity: 0.5;
+      }
+      30% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+    
+    .clear-button:hover {
+      background: #c82333 !important;
+    }
+    
+    /* Responsive button text */
+    .capture-btn .btn-text {
+      margin-left: 4px;
+    }
+    
+    /* Bei kleinen Größen nur Icons */
+    body.size-small .capture-btn .btn-text,
+    body.size-medium .capture-btn .btn-text {
+      display: none;
+    }
+    
+    body.size-small .capture-btn,
+    body.size-medium .capture-btn {
+      padding: 8px !important;
+      min-width: 36px;
+    }
+    
+    .help-text {
+      font-size: 11px;
+      color: #999;
+      margin-top: 5px;
+      font-style: italic;
+    }
+    
+    /* Markdown Styles */
+    .message-content.markdown h1 {
+      font-size: 20px;
+      margin: 15px 0 10px 0;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    
+    .message-content.markdown h2 {
+      font-size: 18px;
+      margin: 12px 0 8px 0;
+    }
+    
+    .message-content.markdown h3 {
+      font-size: 16px;
+      margin: 10px 0 6px 0;
+    }
+    
+    .message-content.markdown ul, .message-content.markdown ol {
+      margin: 8px 0;
+      padding-left: 20px;
+    }
+    
+    .message-content.markdown li {
+      margin: 4px 0;
+    }
+    
+    .message-content.markdown code {
+      background: rgba(0, 0, 0, 0.1);
+      padding: 2px 4px;
+      border-radius: 3px;
+      font-family: 'Consolas', 'Monaco', monospace;
+      font-size: 0.9em;
+    }
+    
+    .message-content.markdown pre {
+      background: #2d2d2d;
+      color: #f8f8f2;
+      padding: 12px;
+      border-radius: 6px;
+      overflow-x: auto;
+      margin: 10px 0;
+    }
+    
+    .message-content.markdown pre code {
+      background: none;
+      padding: 0;
+      color: inherit;
+    }
+    
+    .message-content.markdown blockquote {
+      border-left: 4px solid #ddd;
+      margin: 10px 0;
+      padding-left: 15px;
+      color: #666;
+    }
+    
+    .message-content.markdown table {
+      border-collapse: collapse;
+      margin: 10px 0;
+      width: 100%;
+    }
+    
+    .message-content.markdown th, .message-content.markdown td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    
+    .message-content.markdown th {
+      background: #f5f5f5;
+      font-weight: bold;
+    }
+    
+    .message-content.markdown a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+    
+    .message-content.markdown a:hover {
+      text-decoration: underline;
+    }
+    
+    .message-content.markdown hr {
+      border: none;
+      border-top: 1px solid #e0e0e0;
+      margin: 15px 0;
+    }
+    
+    /* View Toggle */
+    .view-toggle {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      font-size: 11px;
+    }
+    
+    .view-toggle button {
+      padding: 3px 8px;
+      font-size: 11px;
+      background: transparent;
+      color: #666;
+      border: 1px solid #ddd;
+      margin-left: 3px;
+    }
+    
+    .view-toggle button.active {
+      background: #666;
+      color: white;
+    }
+    
+    .view-toggle button:hover {
+      background: #f0f0f0;
+      color: #333;
+    }
+    
+    .view-toggle button.active:hover {
+      background: #555;
+      color: white;
+    }
+    
+    .message.assistant {
+      position: relative;
+    }
+    
+    /* Lizenz-Modal */
+    .license-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .license-modal.active {
+      display: flex;
+    }
+    
+    .license-content {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      max-width: 500px;
+      max-height: 70vh;
+      overflow-y: auto;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    
+    .license-content h3 {
+      margin-top: 0;
+      margin-bottom: 15px;
+    }
+    
+    .license-content pre {
+      background: #f5f5f5;
+      padding: 10px;
+      border-radius: 4px;
+      font-size: 11px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+    }
+    
+    .license-close {
+      text-align: right;
+      margin-top: 15px;
+    }
+    
+    .license-close button {
+      padding: 8px 16px;
+      background: #0066cc;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    .license-close button:hover {
+      background: #0052a3;
+    }
+    
+    /* Löschen-Bestätigung Modal */
+    .delete-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .delete-modal.active {
+      display: flex;
+    }
+    
+    .delete-content {
+      background: white;
+      border-radius: 8px;
+      padding: 25px;
+      max-width: 300px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    
+    .delete-content h3 {
+      margin: 0 0 15px 0;
+      font-size: 18px;
+      color: #333;
+    }
+    
+    .delete-content p {
+      margin: 0 0 20px 0;
+      font-size: 14px;
+      color: #666;
+      line-height: 1.5;
+    }
+    
+    .delete-buttons {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+    
+    .delete-buttons button {
+      padding: 8px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+    
+    .btn-cancel {
+      background: #6c757d;
+      color: white;
+    }
+    
+    .btn-cancel:hover {
+      background: #5a6268;
+    }
+    
+    .btn-delete {
+      background: #dc3545;
+      color: white;
+    }
+    
+    .btn-delete:hover {
+      background: #c82333;
+    }
+  </style>
+  <!-- Marked.js für Markdown Parsing (lokal) -->
+  <script src="marked.min.js"></script>
+  <!-- Highlight.js für Code Highlighting (lokal) -->
+  <link rel="stylesheet" href="github-dark.min.css">
+  <script src="highlight.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="header-top">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <img src="icon48-new.png" alt="Claude" style="width: 24px; height: 24px;">
+          <h1 data-i18n="popupTitle">Claude Web Analyzer Chat</h1>
+        </div>
+        <div style="display: flex; gap: 5px; align-items: center;">
+          <!-- Size buttons hier statt unten rechts -->
+          <div class="inline-size-selector" style="display: flex; gap: 2px; margin-right: 10px;">
+            <button class="size-button" data-size="small" data-i18n-title="sizeSmall">S</button>
+            <button class="size-button active" data-size="medium" data-i18n-title="sizeMedium">M</button>
+            <button class="size-button" data-size="large" data-i18n-title="sizeLarge">L</button>
+            <button class="size-button" data-size="xlarge" data-i18n-title="sizeXLarge">XL</button>
+          </div>
+          <button class="settings-button" id="openInTabButton" data-i18n-title="openInTab" style="padding: 5px 10px; font-size: 12px; background: #0066cc; color: white; border: none; border-radius: 4px; cursor: pointer;">
+            ↗️ Tab
+          </button>
+          <button class="settings-button" id="settingsButton" data-i18n-title="settingsButton">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 15.5A3.5 3.5 0 0 1 8.5 12A3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5a3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97c0-.33-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.31-.61-.22l-2.49 1c-.52-.39-1.06-.73-1.69-.98l-.37-2.65A.506.506 0 0 0 14 2h-4c-.25 0-.46.18-.5.42l-.37 2.65c-.63.25-1.17.59-1.69.98l-2.49-1c-.22-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1c0 .33.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.06.74 1.69.99l.37 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.37-2.65c.63-.26 1.17-.59 1.69-.99l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+      <div class="context-section">
+        <div class="context-toggle" id="contextToggle">
+          <div class="context-toggle-icon"></div>
+          <span class="context-toggle-label" data-i18n="contextLabel">Zusätzlicher Kontext (optional)</span>
+        </div>
+        <div class="context-content" id="contextContent">
+          <textarea id="context" placeholder="z.B. 'Analysiere SEO-Aspekte' oder 'Finde Sicherheitsprobleme'" data-i18n="contextPlaceholder"></textarea>
+        </div>
+      </div>
+      
+      <!-- Capture buttons moved to input section -->
+      
+      <div class="page-info" id="pageInfo"></div>
+      
+      <div id="status"></div>
+    </div>
+    
+    <div class="settings-panel" id="settingsPanel">
+      <h2 style="margin-top: 0;" data-i18n="settingsTitle">Einstellungen</h2>
+      
+      <div class="settings-section">
+        <h3 data-i18n="apiConfigSection">API-Konfiguration</h3>
+        <label for="apiKey" data-i18n="apiKeyLabel">Anthropic API Key:</label>
+        <input type="password" id="apiKey" placeholder="sk-ant-... oder leer für Demo-Modus" data-i18n="apiKeyPlaceholder">
+        <div class="help-text" data-i18n-html="apiKeyHelp">
+          API Key von <a href="https://console.anthropic.com/settings/keys" target="_blank">console.anthropic.com</a><br>
+          <strong>Tipp:</strong> Lassen Sie das Feld leer für Demo-Modus!
+        </div>
+      </div>
+      
+      <div class="settings-section">
+        <h3 data-i18n="modelSection">Claude-Modell</h3>
+        <label for="claudeModel" data-i18n="modelLabel">Modell auswählen:</label>
+        <select id="claudeModel">
+          <option value="claude-opus-4-20250514" data-i18n="modelOpus4">Claude Opus 4 (leistungsstärkstes Modell)</option>
+          <option value="claude-sonnet-4-20250514" data-i18n="modelSonnet4">Claude Sonnet 4 (ausgewogen)</option>
+          <option value="claude-3-7-sonnet-20250219" data-i18n="modelSonnet37">Claude Sonnet 3.7 (empfohlen)</option>
+          <option value="claude-3-5-sonnet-20241022" data-i18n="modelSonnet35">Claude Sonnet 3.5</option>
+          <option value="claude-3-5-haiku-20241022" data-i18n="modelHaiku35">Claude Haiku 3.5 (schnell & günstig)</option>
+        </select>
+      </div>
+      
+      <div class="settings-section">
+        <h3 data-i18n="contentSection">Seitenübermittlung</h3>
+        <div class="checkbox-group">
+          <label>
+            <input type="checkbox" id="includeText" checked>
+            <span data-i18n="includeText">Haupttext der Seite senden</span>
+          </label>
+          <label>
+            <input type="checkbox" id="includeLinks" checked>
+            <span data-i18n="includeLinks">Links einschließen</span>
+          </label>
+          <label>
+            <input type="checkbox" id="includeImages">
+            <span data-i18n="includeImages">Bildinformationen einschließen</span>
+          </label>
+          <label>
+            <input type="checkbox" id="includeMeta" checked>
+            <span data-i18n="includeMeta">Meta-Tags einschließen</span>
+          </label>
+          <label>
+            <input type="checkbox" id="includeFullHtml">
+            <span data-i18n="includeFullHtml">Vollständigen HTML-Code senden (mehr Tokens)</span>
+          </label>
+        </div>
+        
+        <label for="maxContentLength" data-i18n="maxContentLengthLabel">Maximale Textlänge (Zeichen):</label>
+        <input type="number" id="maxContentLength" value="8000" min="1000" max="50000" step="1000">
+        <div class="help-text" data-i18n="maxContentLengthHelp">Reduziere bei großen Seiten, um Tokens zu sparen</div>
+      </div>
+      
+      <div class="settings-section">
+        <h3 data-i18n="responseSection">Antwort-Einstellungen</h3>
+        <label for="maxTokens" data-i18n="maxTokensLabel">Maximale Antwortlänge (Tokens):</label>
+        <input type="number" id="maxTokens" value="1024" min="100" max="4096" step="100">
+        
+        <label for="temperature" data-i18n="temperatureLabel">Kreativität (0 = präzise, 1 = kreativ):</label>
+        <input type="number" id="temperature" value="0.7" min="0" max="1" step="0.1">
+      </div>
+      
+      <div class="settings-buttons">
+        <button class="cancel-settings" id="cancelSettings" data-i18n="cancelButton">Abbrechen</button>
+        <button class="save-settings" id="saveSettings" data-i18n="saveButton">Speichern</button>
+      </div>
+      
+      <div class="settings-section" style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #ddd;">
+        <h3 style="font-size: 12px; color: #666; margin-bottom: 5px;" data-i18n="aboutSection">Über</h3>
+        <p style="font-size: 11px; color: #999; margin: 5px 0;">
+          Claude Assistent v3.6.0<br>
+          © 2024 S.Paul<br>
+          Built with Claude Code 🤖<br>
+          <a href="https://github.com/paule76/claude-web-analyzer" target="_blank" style="color: #0066cc;">GitHub</a> |
+          <a href="#" id="licensesLink" style="color: #0066cc;" data-i18n="viewLicenses">Lizenzen</a>
+        </p>
+      </div>
+    </div>
+    
+    <div class="chat-container" id="chatContainer">
+      <!-- Chat messages will appear here -->
+    </div>
+    
+    <div class="input-section">
+      <div class="input-container">
+        <textarea id="userInput" placeholder="Stelle eine Frage über diese Webseite..." data-i18n="chatInputPlaceholder" autofocus></textarea>
+        <button class="send-button" id="sendButton" data-i18n="sendButton">Senden</button>
+      </div>
+      <div class="action-buttons" style="display: flex; gap: 5px; margin-top: 10px;">
+        <button id="highlightTextBtn" class="capture-btn" style="padding: 6px 12px; background: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px;" data-i18n-title="highlightTextTooltip">
+          <span class="btn-icon">📝</span> <span class="btn-text" data-i18n="highlightText">Text</span>
+        </button>
+        <button id="captureScreenBtn" class="capture-btn" style="padding: 6px 12px; background: #2196F3; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px;" data-i18n-title="captureScreenTooltip">
+          <span class="btn-icon">📸</span> <span class="btn-text" data-i18n="captureScreen">Bild</span>
+        </button>
+        <div style="flex: 1;"></div> <!-- Spacer -->
+        <button class="clear-button" id="clearButton" data-i18n-title="clearChatButton" style="padding: 6px 12px; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; margin-left: auto;">🗑️</button>
+      </div>
+    </div>
+    
+  </div>
+  
+  <!-- Size Selector entfernt - jetzt im Header -->
+  
+  <!-- Löschen Bestätigung Modal -->
+  <div class="delete-modal" id="deleteModal">
+    <div class="delete-content">
+      <h3>🗑️ <span data-i18n="deleteConfirmTitle">Chat löschen?</span></h3>
+      <p data-i18n="deleteConfirmMessage">Der gesamte Chat-Verlauf für diese Domain wird unwiderruflich gelöscht.</p>
+      <div class="delete-buttons">
+        <button class="btn-cancel" id="cancelDelete" data-i18n="cancelButton">Abbrechen</button>
+        <button class="btn-delete" id="confirmDelete" data-i18n="deleteButton">Löschen</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Lizenz Modal -->
+  <div class="license-modal" id="licenseModal">
+    <div class="license-content">
+      <h3 data-i18n="thirdPartyLicenses">Drittanbieter-Lizenzen</h3>
+      <pre>
+Diese Extension verwendet folgende Open-Source-Bibliotheken:
+
+1. marked.js (MIT License)
+   Copyright (c) 2011-2023, Christopher Jeffrey
+   https://github.com/markedjs/marked
+
+2. highlight.js (BSD-3-Clause License)
+   Copyright (c) 2006-2023, Ivan Sagalaev
+   https://github.com/highlightjs/highlight.js
+
+Vollständige Lizenztexte finden Sie in der Datei
+THIRD-PARTY-LICENSES.txt im Installationsverzeichnis.</pre>
+      <div class="license-close">
+        <button id="closeLicenseModal" data-i18n="closeButton">Schließen</button>
+      </div>
+    </div>
+  </div>
+  
+  <script src="i18n-helper.js"></script>
+  <script src="crypto-utils.js"></script>
+  <script src="claude-web-extension-popup-js.js"></script>
+</body>
+</html>

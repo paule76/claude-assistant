@@ -1,0 +1,55 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Development
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Extension development
+*.pem
+*.crx
+*.zip
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# AppIcons - not needed in repo
+AppIcons/
+
+# Sensitive data
+.env
+.env.local
+config.json
+
+# Build artifacts
+dist/
+build/

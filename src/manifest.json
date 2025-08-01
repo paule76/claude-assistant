@@ -1,0 +1,48 @@
+{
+  "manifest_version": 3,
+  "name": "__MSG_extensionName__",
+  "version": "3.6.0",
+  "description": "__MSG_extensionDescription__",
+  "default_locale": "en",
+  "author": "S.Paul",
+  "homepage_url": "https://github.com/paule76/claude-web-analyzer",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "contextMenus",
+    "scripting",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://api.anthropic.com/*"
+  ],
+  "externally_connectable": {
+    "matches": []
+  },
+  "background": {
+    "service_worker": "claude-web-extension-background-wrapper.js"
+  },
+  "action": {
+    "default_popup": "claude-web-extension-popup.html",
+    "default_icon": {
+      "16": "icon16-new.png",
+      "48": "icon48-new.png",
+      "128": "icon128-new.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["claude-web-extension-content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'none'; style-src 'self' 'unsafe-inline';"
+  },
+  "icons": {
+    "16": "icon16-new.png",
+    "48": "icon48-new.png",
+    "128": "icon128-new.png"
+  }
+}

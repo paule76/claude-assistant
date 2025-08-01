@@ -1,0 +1,282 @@
+{
+  "extensionName": {
+    "message": "Claude Assistent",
+    "description": "Extension name"
+  },
+  "extensionDescription": {
+    "message": "Analysiere Webseiten mit Claude AI - Demo-Modus verfügbar!",
+    "description": "Extension description"
+  },
+  "popupTitle": {
+    "message": "Claude Assistent"
+  },
+  "settingsButton": {
+    "message": "Einstellungen",
+    "description": "Settings button tooltip"
+  },
+  "contextLabel": {
+    "message": "Zusätzlicher Kontext (optional):",
+    "description": "Context textarea label"
+  },
+  "contextPlaceholder": {
+    "message": "z.B. 'Analysiere SEO-Aspekte' oder 'Finde Sicherheitsprobleme'",
+    "description": "Context textarea placeholder"
+  },
+  "currentPage": {
+    "message": "Aktuelle Seite:"
+  },
+  "chatInputPlaceholder": {
+    "message": "Stelle eine Frage über diese Webseite..."
+  },
+  "sendButton": {
+    "message": "Senden"
+  },
+  "clearChatButton": {
+    "message": "Chat löschen"
+  },
+  "clearChatConfirm": {
+    "message": "Möchtest du den Chat-Verlauf wirklich löschen?"
+  },
+  "settingsTitle": {
+    "message": "Einstellungen"
+  },
+  "apiConfigSection": {
+    "message": "API-Konfiguration"
+  },
+  "apiKeyLabel": {
+    "message": "Anthropic API Key:"
+  },
+  "apiKeyPlaceholder": {
+    "message": "sk-ant-... oder leer für Demo-Modus"
+  },
+  "apiKeyHelp": {
+    "message": "API Key von <a href=\"https://console.anthropic.com/settings/keys\" target=\"_blank\">console.anthropic.com</a><br><strong>Tipp:</strong> Lassen Sie das Feld leer für Demo-Modus!"
+  },
+  "saveButton": {
+    "message": "Speichern"
+  },
+  "cancelButton": {
+    "message": "Abbrechen"
+  },
+  "modelSection": {
+    "message": "Claude-Modell"
+  },
+  "modelLabel": {
+    "message": "Modell auswählen:"
+  },
+  "modelOpus4": {
+    "message": "Claude Opus 4 (leistungsstärkstes Modell)"
+  },
+  "modelSonnet4": {
+    "message": "Claude Sonnet 4 (ausgewogen)"
+  },
+  "modelSonnet37": {
+    "message": "Claude Sonnet 3.7 (empfohlen)"
+  },
+  "modelSonnet35": {
+    "message": "Claude Sonnet 3.5"
+  },
+  "modelHaiku35": {
+    "message": "Claude Haiku 3.5 (schnell & günstig)"
+  },
+  "contentSection": {
+    "message": "Seitenübermittlung"
+  },
+  "includeText": {
+    "message": "Haupttext der Seite senden"
+  },
+  "includeLinks": {
+    "message": "Links einschließen"
+  },
+  "includeImages": {
+    "message": "Bildinformationen einschließen"
+  },
+  "includeMeta": {
+    "message": "Meta-Tags einschließen"
+  },
+  "includeFullHtml": {
+    "message": "Vollständigen HTML-Code senden (mehr Tokens)"
+  },
+  "maxContentLengthLabel": {
+    "message": "Maximale Textlänge (Zeichen):"
+  },
+  "maxContentLengthHelp": {
+    "message": "Reduziere bei großen Seiten, um Tokens zu sparen"
+  },
+  "responseSection": {
+    "message": "Antwort-Einstellungen"
+  },
+  "maxTokensLabel": {
+    "message": "Maximale Antwortlänge (Tokens):"
+  },
+  "temperatureLabel": {
+    "message": "Kreativität (0 = präzise, 1 = kreativ):"
+  },
+  "errorNoApiKey": {
+    "message": "Bitte speichere zuerst einen API Key in den Einstellungen"
+  },
+  "errorEnterApiKey": {
+    "message": "Bitte gib einen API Key ein"
+  },
+  "errorLoadingPage": {
+    "message": "Konnte Seiteninhalte nicht laden. Bitte lade die Seite neu."
+  },
+  "errorSending": {
+    "message": "Fehler beim Senden der Nachricht"
+  },
+  "successApiKeySaved": {
+    "message": "API Key gespeichert!"
+  },
+  "successSettingsSaved": {
+    "message": "Einstellungen gespeichert!"
+  },
+  "demoModeTitle": {
+    "message": "DEMO-MODUS"
+  },
+  "demoModeInfo": {
+    "message": "Für echte KI-Analysen:\n1. Erstellen Sie einen kostenlosen Account bei console.anthropic.com\n2. Generieren Sie einen API-Key\n3. Fügen Sie ihn in den Einstellungen ein\n\n💡 Geschätzte Kosten: $0.001-0.01 pro Anfrage"
+  },
+  "errorRateLimit": {
+    "message": "Zu viele Anfragen. Bitte warte",
+    "description": "First part of rate limit message"
+  },
+  "errorMinute": {
+    "message": "Minute",
+    "description": "Singular"
+  },
+  "errorMinutes": {
+    "message": "Minuten",
+    "description": "Plural"
+  },
+  "errorAuthKey": {
+    "message": "API-Key ungültig oder fehlt. Bitte prüfe deinen Key in den Einstellungen. Für Demo-Modus: Feld leer lassen!"
+  },
+  "errorAuthKeyChat": {
+    "message": "Bitte öffne die Einstellungen (⚙️) und:\n• Gib einen gültigen API-Key ein (sk-ant-...)\n• ODER lass das Feld leer für Demo-Modus"
+  },
+  "errorBadRequest": {
+    "message": "Ungültige Anfrage. Die Seite könnte zu groß oder komplex sein."
+  },
+  "errorNetwork": {
+    "message": "Keine Internetverbindung oder API nicht erreichbar."
+  },
+  "errorTimeout": {
+    "message": "Zeitüberschreitung. Die Anfrage dauerte zu lange."
+  },
+  "errorQuota": {
+    "message": "API-Quota erschöpft. Bitte prüfe dein Anthropic-Konto."
+  },
+  "errorGeneral": {
+    "message": "Ein Fehler ist aufgetreten."
+  },
+  "textTruncated": {
+    "message": "[Text gekürzt - Seite war zu groß]"
+  },
+  "htmlTruncated": {
+    "message": "[HTML gekürzt]"
+  },
+  "contextMenuAnalyze": {
+    "message": "Mit Claude analysieren"
+  },
+  "viewMarkdown": {
+    "message": "Markdown-Ansicht"
+  },
+  "viewRaw": {
+    "message": "Rohtext-Ansicht"
+  },
+  "highlightText": {
+    "message": "Text"
+  },
+  "captureScreen": {
+    "message": "Bild"
+  },
+  "selectedText": {
+    "message": "Markierter Text"
+  },
+  "noTextSelected": {
+    "message": "Bitte markiere zuerst einen Text auf der Webseite"
+  },
+  "screenshotCaptured": {
+    "message": "Bildschirmfoto aufgenommen!"
+  },
+  "screenshotError": {
+    "message": "Bildschirmfoto konnte nicht aufgenommen werden"
+  },
+  "screenshotLabel": {
+    "message": "Bildschirmfoto:"
+  },
+  "contextMenuAnalyzeSelection": {
+    "message": "Auswahl mit Claude analysieren"
+  },
+  "contextMenuCaptureAnalyze": {
+    "message": "Screenshot & Analysieren"
+  },
+  "migrateChatHistory": {
+    "message": "Es wurde eine alte Chat-Historie gefunden. Möchtest du sie zu %s migrieren?",
+    "description": "Prompt to migrate old global chat history to domain-specific"
+  },
+  "domainSpecificChat": {
+    "message": "Chat für:",
+    "description": "Label for domain-specific chat"
+  },
+  "aboutSection": {
+    "message": "Über",
+    "description": "About section title"
+  },
+  "viewLicenses": {
+    "message": "Lizenzen",
+    "description": "View licenses link"
+  },
+  "thirdPartyLicenses": {
+    "message": "Drittanbieter-Lizenzen",
+    "description": "Third-party licenses title"
+  },
+  "closeButton": {
+    "message": "Schließen",
+    "description": "Close button"
+  },
+  "openInTab": {
+    "message": "In Tab öffnen",
+    "description": "Open in tab button tooltip"
+  },
+  "sizeSmall": {
+    "message": "Klein",
+    "description": "Small size tooltip"
+  },
+  "sizeMedium": {
+    "message": "Mittel",
+    "description": "Medium size tooltip"
+  },
+  "sizeLarge": {
+    "message": "Groß",
+    "description": "Large size tooltip"
+  },
+  "sizeXLarge": {
+    "message": "Extra Groß",
+    "description": "Extra large size tooltip"
+  },
+  "highlightTextTooltip": {
+    "message": "Text auf der Webseite markieren",
+    "description": "Tooltip for highlight text button"
+  },
+  "captureScreenTooltip": {
+    "message": "Bildschirmfoto aufnehmen",
+    "description": "Tooltip for screenshot button"
+  },
+  "deleteConfirmTitle": {
+    "message": "Chat löschen?",
+    "description": "Delete confirmation dialog title"
+  },
+  "deleteConfirmMessage": {
+    "message": "Der gesamte Chat-Verlauf für diese Domain wird unwiderruflich gelöscht.",
+    "description": "Delete confirmation dialog message"
+  },
+  "deleteButton": {
+    "message": "Löschen",
+    "description": "Delete button"
+  },
+  "chatDeleted": {
+    "message": "Chat gelöscht!",
+    "description": "Chat deleted success message"
+  }
+}

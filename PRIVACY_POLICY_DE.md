@@ -85,7 +85,7 @@ Diese Datenschutzerklärung kann aktualisiert werden, um Änderungen in der Erwe
 
 ## Kontakt
 Bei Fragen zu dieser Datenschutzerklärung oder der Erweiterung:
-- GitHub: https://github.com/paulstefan/claude-web-analyzer
+- GitHub: https://github.com/paule76/claude-web-analyzer
 - Erstellen Sie ein Issue im GitHub-Repository
 
 ## Compliance
