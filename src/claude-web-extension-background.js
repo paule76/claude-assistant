@@ -79,9 +79,9 @@ async function handleChatMessage(request, sendResponse) {
   // Demo-Modus wenn kein API Key
   if (!apiKey || apiKey === 'DEMO') {
     const demoResponse = DEMO_RESPONSES[Math.floor(Math.random() * DEMO_RESPONSES.length)]
-      .replace('{title}', pageData.title || 'Unbekannt')
-      .replace('{links}', pageData.links ? pageData.links.length : '0')
-      .replace('{images}', pageData.images ? pageData.images.length : '0');
+      .replace('{title}', pageData?.title || 'Unbekannt')
+      .replace('{links}', pageData?.links ? pageData.links.length : '0')
+      .replace('{images}', pageData?.images ? pageData.images.length : '0');
     
     sendResponse({ 
       reply: `🎯 **${chrome.i18n.getMessage('demoModeTitle')}** 🎯\n\n${demoResponse}\n\n` +
@@ -157,7 +157,7 @@ Titel: ${pageData.title}`;
     }
 
     if (context) {
-      systemPrompt += `\n\nZusätzlicher Kontext vom Nutzer: ${context}`;
+      systemPrompt += `\n\nWICHTIG - Zusätzlicher Kontext vom Nutzer (BITTE BEACHTEN): ${context}`;
     }
     
     // Bereite Chat-History vor (ohne system message)
@@ -193,7 +193,12 @@ Titel: ${pageData.title}`;
         content: 'Ich verstehe.'
       });
     }
-    messages.push({ role: 'user', content: message });
+    // Füge Kontext zur User Message hinzu wenn vorhanden
+    let finalMessage = message;
+    if (context) {
+      finalMessage = `${message}\n\n[Kontext: ${context}]`;
+    }
+    messages.push({ role: 'user', content: finalMessage });
     
     // API-Aufruf mit system als separaten Parameter
     const requestBody = {
