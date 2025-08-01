@@ -122,10 +122,10 @@ Beiträge sind willkommen! Bitte erstelle ein Issue oder Pull Request.
 
 ```bash
 # Repository klonen
-git clone https://github.com/paule76/claude-web-analyzer.git
+git clone https://github.com/paule76/claude-assistant.git
 
 # In src Ordner wechseln
-cd claude-web-analyzer/src
+cd claude-assistant/src
 
 # Änderungen machen und testen
 # Extension in Chrome nach Änderungen neu laden
@@ -156,7 +156,7 @@ Entwickelt mit [Claude Code](https://github.com/anthropics/claude-code) 🤖✨
 ## 📞 Support
 
 - 🐛 Bugs melden: [GitHub Issues](https://github.com/paule76/claude-assistant/issues)
-- 💡 Feature Requests: [GitHub Issues](https://github.com/paule76/claude-web-analyzer/issues)
+- 💡 Feature Requests: [GitHub Issues](https://github.com/paule76/claude-assistant/issues)
 
 ---
 

@@ -1,10 +1,10 @@
-# Datenschutzerklärung für Claude Web Analyzer
+# Datenschutzerklärung für Claude Assistant
 
 **Zuletzt aktualisiert: Februar 2025**
 
 ## Überblick
 
-Claude Web Analyzer ist eine Chrome-Erweiterung, die es Nutzern ermöglicht, Webinhalte mit Claude AI von Anthropic zu analysieren. Diese Datenschutzerklärung erklärt, wie wir mit Ihren Daten umgehen.
+Claude Assistant ist eine Chrome-Erweiterung, die es Nutzern ermöglicht, Webinhalte mit Claude AI von Anthropic zu analysieren. Diese Datenschutzerklärung erklärt, wie wir mit Ihren Daten umgehen.
 
 ## Datenerfassung und -nutzung
 
@@ -85,7 +85,7 @@ Diese Datenschutzerklärung kann aktualisiert werden, um Änderungen in der Erwe
 
 ## Kontakt
 Bei Fragen zu dieser Datenschutzerklärung oder der Erweiterung:
-- GitHub: https://github.com/paule76/claude-web-analyzer
+- GitHub: https://github.com/paule76/claude-assistant
 - Erstellen Sie ein Issue im GitHub-Repository
 
 ## Compliance
@@ -94,4 +94,4 @@ Diese Erweiterung ist darauf ausgelegt, Folgendes einzuhalten:
 - DSGVO-Prinzipien (Nutzerkontrolle, Datenminimierung, Zweckbindung)
 - Allgemeine Best Practices für Datenschutz
 
-Durch die Nutzung von Claude Web Analyzer stimmen Sie dieser Datenschutzerklärung und der Verarbeitung Ihrer Daten wie oben beschrieben zu.
+Durch die Nutzung von Claude Assistant stimmen Sie dieser Datenschutzerklärung und der Verarbeitung Ihrer Daten wie oben beschrieben zu.

@@ -1,4 +1,4 @@
-# Chrome Web Store Listing für Claude Web Analyzer
+# Chrome Web Store Listing für Claude Assistant
 
 ## 1. Kurzbeschreibung (max. 132 Zeichen)
 **Deutsch:** "Analysiere Webseiten mit Claude AI. Chat-Interface, mehrere Modelle, verschlüsselte API-Keys."
@@ -11,7 +11,7 @@
 
 ### Deutsch:
 ```
-Claude Web Analyzer ermöglicht es dir, jede Webseite mit der KI von Claude zu analysieren. 
+Claude Assistant ermöglicht es dir, jede Webseite mit der KI von Claude zu analysieren. 
 
 FEATURES:
 ✓ Chat-Interface - Stelle Fragen über die aktuelle Webseite
@@ -39,7 +39,7 @@ Benötigt einen Anthropic API-Key von console.anthropic.com
 
 ### English:
 ```
-Claude Web Analyzer lets you analyze any webpage using Claude AI with a simple chat interface.
+Claude Assistant lets you analyze any webpage using Claude AI with a simple chat interface.
 
 FEATURES:
 ✓ Chat Interface - Ask questions about the current webpage
@@ -135,8 +135,8 @@ Requires an Anthropic API key from console.anthropic.com
 
 ## 7. Support-Informationen
 
-**Support-URL:** https://github.com/paule76/claude-web-analyzer/issues
-**Privacy Policy URL:** https://github.com/paule76/claude-web-analyzer/blob/main/PRIVACY_POLICY.md
+**Support-URL:** https://github.com/paule76/claude-assistant/issues
+**Privacy Policy URL:** https://github.com/paule76/claude-assistant/blob/main/PRIVACY.md
 
 ## 8. Zusätzliche Assets
 

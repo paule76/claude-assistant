@@ -1,10 +1,10 @@
-# Privacy Policy for Claude Web Analyzer
+# Privacy Policy for Claude Assistant
 
 **Last Updated: February 2025**
 
 ## Overview
 
-Claude Web Analyzer is a Chrome extension that allows users to analyze web content using Claude AI by Anthropic. This privacy policy explains how we handle your data.
+Claude Assistant is a Chrome extension that allows users to analyze web content using Claude AI by Anthropic. This privacy policy explains how we handle your data.
 
 ## Data Collection and Usage
 
@@ -85,7 +85,7 @@ This privacy policy may be updated to reflect changes in the extension. Updates 
 
 ## Contact
 For questions about this privacy policy or the extension:
-- GitHub: https://github.com/paule76/claude-web-analyzer
+- GitHub: https://github.com/paule76/claude-assistant
 - Create an issue on the GitHub repository
 
 ## Compliance
@@ -94,4 +94,4 @@ This extension is designed to comply with:
 - GDPR principles (user control, data minimization, purpose limitation)
 - General data protection best practices
 
-By using Claude Web Analyzer, you agree to this privacy policy and the processing of your data as described above.
+By using Claude Assistant, you agree to this privacy policy and the processing of your data as described above.

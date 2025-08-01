@@ -122,10 +122,10 @@ Contributions are welcome! Please create an issue or pull request.
 
 ```bash
 # Clone repository
-git clone https://github.com/paule76/claude-web-analyzer.git
+git clone https://github.com/paule76/claude-assistant.git
 
 # Change to src directory
-cd claude-web-analyzer/src
+cd claude-assistant/src
 
 # Make changes and test
 # Reload extension in Chrome after changes

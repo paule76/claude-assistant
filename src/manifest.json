@@ -5,7 +5,7 @@
   "description": "__MSG_extensionDescription__",
   "default_locale": "en",
   "author": "S.Paul",
-  "homepage_url": "https://github.com/paule76/claude-web-analyzer",
+  "homepage_url": "https://github.com/paule76/claude-assistant",
   "permissions": [
     "activeTab",
     "storage",
