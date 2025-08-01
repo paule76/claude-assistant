@@ -20,7 +20,7 @@ chrome.storage.sync.get(['settings'], (result) => {
         ANTHROPIC_API_KEY = decryptApiKey(result.settings.apiKey);
         // API-Key erfolgreich geladen
       } catch (e) {
-        // Fehler beim Entschlüsseln des API-Keys
+        console.error('Error decrypting API key:', e);
         ANTHROPIC_API_KEY = '';
       }
     } else {
@@ -243,7 +243,7 @@ Titel: ${pageData.title}`;
       try {
         errorDetails = await response.json();
       } catch (e) {
-        // Ignore JSON parse errors
+        console.error('Error parsing JSON response:', e);
       }
       // Authentication Error (401) Debug-Log entfernt
       sendResponse({ 
@@ -259,7 +259,7 @@ Titel: ${pageData.title}`;
       try {
         errorDetails = await response.json();
       } catch (e) {
-        // Ignore JSON parse errors
+        console.error('Error parsing JSON response:', e);
       }
       // Bad Request Error (400) Debug-Log entfernt
       sendResponse({ 
@@ -283,7 +283,13 @@ Titel: ${pageData.title}`;
     sendResponse({ reply });
     
   } catch (error) {
-    // Fehler beim API-Aufruf Debug-Log entfernt
+    console.error('Error in handleChatMessage:', error);
+    console.error('Error details:', {
+      message: error.message,
+      stack: error.stack,
+      apiKey: apiKey ? 'present' : 'missing',
+      settings: activeSettings
+    });
     
     // Nutzerfreundliche Fehlermeldungen
     let userMessage = chrome.i18n.getMessage('errorGeneral');
@@ -326,6 +332,7 @@ async function analyzeCurrentPage(sendResponse) {
     
     sendResponse({ success: true });
   } catch (error) {
+    console.error('Error in analyzeCurrentPage:', error);
     chrome.storage.local.set({ 
       lastError: error.message,
       lastAnalysis: null
@@ -396,6 +403,7 @@ async function captureVisibleTab(sendResponse) {
       timestamp: new Date().toISOString()
     });
   } catch (error) {
+    console.error('Error capturing screenshot:', error);
     sendResponse({
       success: false,
       error: error.message
@@ -469,6 +477,6 @@ async function captureAndOpenPopup() {
     // Öffne Popup
     chrome.action.openPopup();
   } catch (error) {
-    // Fehlerbehandlung
+    console.error('Error in captureAndOpenPopup:', error);
   }
 }

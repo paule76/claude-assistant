@@ -341,6 +341,41 @@
       }
     }
     
+    /* View Toggle Styles */
+    .view-toggle {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      display: flex;
+      gap: 2px;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    
+    .message.assistant:hover .view-toggle {
+      opacity: 1;
+    }
+    
+    .view-toggle button {
+      padding: 4px 8px;
+      font-size: 11px;
+      border: 1px solid #ddd;
+      background: white;
+      cursor: pointer;
+      border-radius: 3px;
+      transition: all 0.2s;
+    }
+    
+    .view-toggle button:hover {
+      background: #f0f0f0;
+    }
+    
+    .view-toggle button.active {
+      background: #0066cc;
+      color: white;
+      border-color: #0066cc;
+    }
+    
     /* Responsive */
     @media (max-width: 768px) {
       .container {
@@ -415,13 +450,8 @@
     </div>
   </div>
   
-  <!-- Settings Panel (wiederverwendet aus Popup) -->
-  <div class="settings-panel" id="settingsPanel" style="display: none;">
-    <!-- Wird dynamisch aus popup.html geladen -->
-  </div>
-  
   <script src="i18n-helper.js"></script>
   <script src="crypto-utils.js"></script>
-  <script src="claude-web-extension-tab-js.js"></script>
+  <script src="claude-web-extension-tab.js"></script>
 </body>
 </html>

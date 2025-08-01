@@ -432,7 +432,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       // Hole Seiteninhalte
       currentPageData = await chrome.tabs.sendMessage(tab.id, { action: "getPageContent" });
     } catch (error) {
-      // Fehler beim Laden der Seiteninhalte Debug-Log entfernt
+      console.error('Error loading page content:', error);
       // Fallback für Fehler
       currentPageData = {
         url: 'unknown',
@@ -477,6 +477,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         chatHistory: chatHistory,
         settings: settingsToSend
       }, (response) => {
+        // Check for runtime errors
+        if (chrome.runtime.lastError) {
+          console.error('Chrome runtime error:', chrome.runtime.lastError);
+          loadingMessage.remove();
+          showError('Verbindungsfehler zur Extension');
+          sendButton.disabled = false;
+          return;
+        }
         // Entferne Lade-Animation
         loadingMessage.remove();
         
@@ -504,8 +512,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         userInput.focus();
       });
     } catch (error) {
+      console.error('Error sending message:', error);
       loadingMessage.remove();
-      showError(getMessage('errorSending'));
+      showError(getMessage('errorSending') + ' (Details in Console)');
       sendButton.disabled = false;
     }
   }
