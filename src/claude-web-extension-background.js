@@ -68,7 +68,7 @@ const DEMO_RESPONSES = [
 
 // Chat-Funktion
 async function handleChatMessage(request, sendResponse) {
-  const { message, context, pageData, chatHistory, settings } = request;
+  let { message, context, pageData, chatHistory, settings } = request;
   
   // Verwende übergebene Settings oder Defaults
   const activeSettings = settings || currentSettings;
