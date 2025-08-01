@@ -1,0 +1,24 @@
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <!-- Hintergrund -->
+  <rect width="128" height="128" rx="24" fill="#D97757"/>
+  
+  <!-- Claude "C" Logo -->
+  <path d="M 64 24 
+           C 40 24 24 44 24 64
+           C 24 84 40 104 64 104
+           C 76 104 86 98 92 90
+           L 82 80
+           C 78 84 72 88 64 88
+           C 48 88 40 76 40 64
+           C 40 52 48 40 64 40
+           C 72 40 78 44 82 48
+           L 92 38
+           C 86 30 76 24 64 24 Z" 
+        fill="white" 
+        opacity="0.95"/>
+  
+  <!-- Zusätzlicher Akzent für "AI" Feeling -->
+  <circle cx="88" cy="64" r="4" fill="white" opacity="0.8"/>
+  <circle cx="96" cy="64" r="3" fill="white" opacity="0.6"/>
+  <circle cx="102" cy="64" r="2" fill="white" opacity="0.4"/>
+</svg>
