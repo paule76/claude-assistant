@@ -44,7 +44,7 @@
 
 1. Repository klonen:
 ```bash
-git clone https://github.com/paule76/claude-assistant.git
+git clone git@github.com:paule76/claude-assistant.git
 cd claude-assistant
 ```
 
@@ -155,7 +155,7 @@ Entwickelt mit [Claude Code](https://github.com/anthropics/claude-code) 🤖✨
 
 ## 📞 Support
 
-- 🐛 Bugs melden: [GitHub Issues](https://github.com/paule76/claude-web-analyzer/issues)
+- 🐛 Bugs melden: [GitHub Issues](https://github.com/paule76/claude-assistant/issues)
 - 💡 Feature Requests: [GitHub Issues](https://github.com/paule76/claude-web-analyzer/issues)
 
 ---

@@ -44,7 +44,7 @@
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/paule76/claude-assistant.git
+git clone git@github.com:paule76/claude-assistant.git
 cd claude-assistant
 ```
 
@@ -155,8 +155,8 @@ Built with [Claude Code](https://github.com/anthropics/claude-code) 🤖✨
 
 ## 📞 Support
 
-- 🐛 Report bugs: [GitHub Issues](https://github.com/paule76/claude-web-analyzer/issues)
-- 💡 Feature requests: [GitHub Issues](https://github.com/paule76/claude-web-analyzer/issues)
+- 🐛 Report bugs: [GitHub Issues](https://github.com/paule76/claude-assistant/issues)
+- 💡 Feature requests: [GitHub Issues](https://github.com/paule76/claude-assistant/issues)
 
 ---
 
