@@ -2,6 +2,28 @@
 
 All notable changes to Claude Assistant will be documented in this file.
 
+## [3.7.1] - 2025-01-02
+
+### Fixed
+- 🐛 TypeError when reassigning pageData constant - Fixed const declaration issue
+- 📝 Updated all repository references from claude-web-analyzer to claude-assistant
+- 🖼️ Added Chrome Web Store formatted screenshots (1280x800)
+
+## [3.7.0] - 2025-01-02
+
+### Added
+- 🔍 Comprehensive error logging throughout the extension for better debugging
+- 📑 Tab mode implementation - Chat now properly loads when opened in full tab
+- 🔧 Console.error logging in all catch blocks
+
+### Fixed
+- 🐛 Tab mode not loading chat history from popup mode
+- 📁 Missing claude-web-extension-tab.js implementation
+- 🔄 Chat history now properly transfers between popup and tab mode
+
+### Changed
+- 📝 Renamed tab-js.js to tab.js for consistency
+
 ## [3.6.0] - 2024-12-29
 
 ### Changed
